@@ -1,4 +1,4 @@
-# Go deployment tool for DigitalOcean Serverless
+# DigitalOcean Serverless Go Deployment Tool
 
 When using DigitalOcean Serverless, you can deploy your Go functions using `doctl serverless deploy`, however they don't support **private Go modules** or **vendoring** or **building locally**. This tool is a workaround to this limitation.
 
