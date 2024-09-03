@@ -1,8 +1,9 @@
 name: goreleaser
 
 on:
-  pull_request:
   push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -10,6 +11,9 @@ permissions:
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: [1.17.x]
     steps:
       -
         name: Checkout
@@ -19,6 +23,8 @@ jobs:
       -
         name: Set up Go
         uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6

@@ -1,4 +1,4 @@
-module github.com/jrschumacher/go-dofunctions
+module github.com/jrschumacher/doctl-serverless-go
 
 go 1.17
 
