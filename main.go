@@ -13,7 +13,8 @@ import (
 const ProjectCfgFile = "project"
 const DOConfigDir = ".do"
 const DeployTemplateCfgFile = "deploy.template"
-const PrivateRepoDir = "private"
+
+var PrivateRepoDir string
 
 var CfgExt = []string{".yaml", ".yml"}
 
@@ -32,6 +33,7 @@ var ErrInvalidUsage = errors.New("invalid usage")
 func main() {
 	var err error
 
+	flag.StringVar(&PrivateRepoDir, "private", PrivateRepoDir, "private repo directory")
 	flag.Parse()
 
 	subcommand := flag.Arg(0)
