@@ -33,7 +33,7 @@ var ErrInvalidUsage = errors.New("invalid usage")
 func main() {
 	var err error
 
-	flag.StringVar(&PrivateRepoDir, "private", PrivateRepoDir, "private repo directory")
+	flag.StringVar(&PrivateRepoDir, "private-dir", "private", "private repo directory")
 	flag.Parse()
 
 	subcommand := flag.Arg(0)
