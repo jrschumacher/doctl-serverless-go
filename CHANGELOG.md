@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.2.1...v0.2.2) (2024-09-04)
+
+
+### Bug Fixes
+
+* cast rune as string ([cee4c2d](https://github.com/jrschumacher/doctl-serverless-go/commit/cee4c2db451cb30b593769a90a8324fa614bfc22))
+
 ## [0.2.1](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.2.0...v0.2.1) (2024-09-04)
 
 
