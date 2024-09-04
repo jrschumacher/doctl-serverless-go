@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.2.2...v0.2.3) (2024-09-04)
+
+
+### Bug Fixes
+
+* use hexsum for filesystem name ([ea67f31](https://github.com/jrschumacher/doctl-serverless-go/commit/ea67f31528066fbafb8dcfe215044d2d1a99ae5c))
+
 ## [0.2.2](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.2.1...v0.2.2) (2024-09-04)
 
 
