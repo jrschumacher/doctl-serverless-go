@@ -2,7 +2,7 @@ package main
 
 import (
 	"crypto/sha1"
-	"encoding/base64"
+	"encoding/hex"
 	"fmt"
 	"log"
 	"os"
@@ -57,11 +57,12 @@ func cleanPrivateRepo(_ ProjectSpec) goPackageFunc {
 			return fmt.Errorf(prefix("error: failed reading go.mod: %w"), err)
 		}
 		h := sha1.New()
-		h.Write(modFile)
-		sum := h.Sum(nil)
-		base64sum := base64.StdEncoding.EncodeToString(sum)
-		if hash != base64sum {
-			log.Printf(prefix("checksum: %s"), base64sum)
+		if _, err := h.Write(modFile); err != nil {
+			return fmt.Errorf(prefix("error: failed hashing go.mod: %w"), err)
+		}
+		hexsum := hex.EncodeToString(h.Sum(nil))
+		if hash != hexsum {
+			log.Printf(prefix("checksum: %s"), hexsum)
 			log.Printf(prefix("hash: %s"), hash)
 			return fmt.Errorf(prefix("error: go.mod checksum mismatch backup: %s hash: %s"), goModBak)
 		}
@@ -175,12 +176,13 @@ func clonePrivateRepo(projectCfg ProjectSpec) goPackageFunc {
 
 		// sha1 hash of bytes
 		h := sha1.New()
-		h.Write(b)
-		sum := h.Sum(nil)
-		base64sum := base64.StdEncoding.EncodeToString(sum)
+		if _, err := h.Write(b); err != nil {
+			return fmt.Errorf(prefix("error: failed hashing go.mod: %w"), err)
+		}
+		hexsum := hex.EncodeToString(h.Sum(nil))
 
 		// backup go.mod
-		if err := os.Rename(goMod, goMod+"."+base64sum+".bak"); err != nil {
+		if err := os.Rename(goMod, goMod+"."+hexsum+".bak"); err != nil {
 			return fmt.Errorf(prefix("error: failed renaming go.mod: %w"), err)
 		}
 
