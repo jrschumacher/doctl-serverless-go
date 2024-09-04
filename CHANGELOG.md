@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.2.0...v0.2.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* set default private path ([3606d3d](https://github.com/jrschumacher/doctl-serverless-go/commit/3606d3dca9ec636fdfb0fb566fddfde69b5ba2aa))
+
 ## [0.2.0](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.1.1...v0.2.0) (2024-09-04)
 
 
