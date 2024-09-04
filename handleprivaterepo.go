@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"strconv"
 	"strings"
 
 	"golang.org/x/mod/modfile"
@@ -128,7 +129,7 @@ func clonePrivateRepo(projectCfg ProjectSpec) goPackageFunc {
 					return fmt.Errorf(prefix("error: failed matching private repo: %w"), err)
 				} else if match {
 					clonePath := path.Join(privateRepoDir, r.Mod.Path)
-					newModPath := path.Join(".", PrivateRepoDir, r.Mod.Path)
+					newModPath := "." + strconv.QuoteRune(os.PathSeparator) + path.Join(PrivateRepoDir, r.Mod.Path)
 
 					log.Printf(prefix("found private repo: %s"), r.Mod.Path)
 
