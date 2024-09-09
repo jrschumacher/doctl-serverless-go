@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.2.3...v0.3.0) (2024-09-09)
+
+
+### Features
+
+* export projectconfig for ext use ([130bcb4](https://github.com/jrschumacher/doctl-serverless-go/commit/130bcb4bd867b1beee8e6406d86b6078afd5808f))
+
 ## [0.2.3](https://github.com/jrschumacher/doctl-serverless-go/compare/v0.2.2...v0.2.3) (2024-09-04)
 
 
