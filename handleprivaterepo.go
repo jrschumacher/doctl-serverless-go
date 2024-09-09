@@ -10,10 +10,11 @@ import (
 	"path"
 	"strings"
 
+	"github.com/jrschumacher/doctl-serverless-go/pkg/projectconfig"
 	"golang.org/x/mod/modfile"
 )
 
-func cleanPrivateRepo(_ ProjectSpec) goPackageFunc {
+func cleanPrivateRepo(_ *projectconfig.ProjectSpec) goPackageFunc {
 	log.Print("cleaning private repos...")
 	return func(pkgDirName, actDirName string) error {
 		prefix := pkgPrefix(pkgDirName, actDirName)
@@ -80,7 +81,7 @@ func cleanPrivateRepo(_ ProjectSpec) goPackageFunc {
 	}
 }
 
-func clonePrivateRepo(projectCfg ProjectSpec) goPackageFunc {
+func clonePrivateRepo(projectCfg *projectconfig.ProjectSpec) goPackageFunc {
 	log.Print("checking for private repos...")
 
 	// check if GOPRIVATE is set in projectCfg

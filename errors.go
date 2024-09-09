@@ -5,10 +5,9 @@ import (
 	"log"
 )
 
-var ErrCfgNotFound = fmt.Errorf("could not find config file")
-var ErrCfgParse = fmt.Errorf("error parsing config file")
-var ErrParseProjectCfg = fmt.Errorf("error parsing project.yaml")
-var ErrParseDeployTemplateCfg = fmt.Errorf("error parsing deploy.template.yaml")
+var ErrNoProjectCfg = fmt.Errorf("no project.[yaml|yml] found")
+var ErrParseProjectCfg = fmt.Errorf("error parsing project.[yaml|yml]")
+var ErrParseDeployTemplateCfg = fmt.Errorf("error parsing deploy.template.[yaml|yml]")
 
 var ErrNotMonorepo = fmt.Errorf("not a digitalocean serverless monorepo")
 var ErrNoPackagesFound = fmt.Errorf("no packages found")

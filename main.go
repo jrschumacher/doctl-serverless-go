@@ -8,6 +8,8 @@ import (
 	"os"
 	"path"
 	"reflect"
+
+	"github.com/jrschumacher/doctl-serverless-go/pkg/projectconfig"
 )
 
 const ProjectCfgFile = "project"
@@ -50,10 +52,23 @@ func main() {
 		log.Fatal(errors.Join(ErrNotMonorepo, err))
 	}
 
+	// check project.yaml exists
+	var projectCfgFile string
+	for _, ext := range CfgExt {
+		f := path.Join(monorepoPath, ProjectCfgFile+ext)
+		if _, err := os.Stat(f); err == nil {
+			projectCfgFile = f
+			break
+		}
+	}
+	if projectCfgFile == "" {
+		log.Fatal(errors.Join(ErrNotMonorepo, errors.Join(ErrNoProjectCfg, err)))
+	}
+
 	// read project yaml
 	log.Print("parsing project.yaml... ")
-	var projectCfg ProjectSpec
-	if err := parseCfg(monorepoPath, ProjectCfgFile, &projectCfg); err != nil {
+	projectCfg, err := projectconfig.Parse(projectCfgFile)
+	if err != nil {
 		log.Fatal(errors.Join(ErrParseProjectCfg, errors.Join(ErrNotMonorepo, err)))
 	}
 
@@ -90,7 +105,7 @@ func exitInvalidUsage() {
 	os.Exit(1)
 }
 
-func forEveryPackage(pkgsDirName string, projectCfg ProjectSpec, fns ...goPackageFunc) errMap {
+func forEveryPackage(pkgsDirName string, projectCfg *projectconfig.ProjectSpec, fns ...goPackageFunc) errMap {
 	pkgErrs := make(map[string]error)
 	for _, pkg := range projectCfg.Packages {
 		scope := pkg.Name
